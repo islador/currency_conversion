@@ -1,20 +1,18 @@
 require 'spec_helper'
 
 require_relative '../model/currency'
+require_relative '../model/machine'
 
 describe Currency do
   before do
-    @fifty = instance_double("Currency", :name => "Fifty", :value => 5000, :next => nil)
-    @hundred = Currency.new("Hundred", 10000, @fifty)
+    @machine = Machine.new()
+    @fifty = instance_double("Currency", :name => "Fifty", :value => 5000, :next => nil, :machine => @machine)
+    @hundred = Currency.new("Hundred", 10000, @fifty, @machine)
   end
 
   subject {@hundred}
 
   describe "Add" do
-    @machine = Machine.new()
-    @machine.add_currency(@hundred)
-
-
     context "current_value is 50" do
       @machine.current_value = 50
       it "does not send itself to the machine" do
@@ -27,6 +25,7 @@ describe Currency do
         @hundred.add(50)
       end
     end
+
     context "current_value is 100" do
       @machine.current_value = 100
       it "sends itself to 'change' once" do

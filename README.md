@@ -2,8 +2,7 @@
 
 Build a program to calculate change in proper denominations after accepting a starting USD$ value. For example, a starting value of $11.00 would result in (1) $10 and (1) $1 bills.
 
-Design specs
-
+##Design specs
 1. Make use of all common USD$ denominations
 2. Calculate change using the minimum number of bills and coins necessary
 3. Assume infinite amounts of each denomination in change machine

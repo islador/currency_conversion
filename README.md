@@ -33,3 +33,14 @@ end
 return change
 
 ```
+
+# Usage Instructions
+To run the example contained in currency_conversion:
+
+cd into the directory
+run
+```
+ruby example.rb
+```
+and follow the on-screen prompts.
+

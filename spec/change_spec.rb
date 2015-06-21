@@ -17,7 +17,7 @@ describe Change do
 
   describe "add_currency" do
     it "throws an error if a currency object is not passed" do
-      expect {@change.add("Cash")}.to raise_error(ArgumentError)
+      expect {@change.add_currency("Cash")}.to raise_error(ArgumentError)
     end
 
     context "amounts hash does not contain that name" do
@@ -35,6 +35,9 @@ describe Change do
     end
 
     context "amounts hash contains that name" do
+      before do
+        @change.amounts.store("Penny", 1)
+      end
       it "increments the value of amounts['currency_name']" do
         expect(@change.amounts["Penny"]).not_to be_nil
         expect(@change.amounts["Penny"]).to be 1
@@ -45,9 +48,11 @@ describe Change do
   end
 
   describe "to_s" do
-    @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 1}
+    before do
+      @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 1}
+    end
     it "returns a formatted string of the amounts hash" do
-      expect(@change.to_s).to match "Change:\n 2 Hundred\n 1 Fifty\n 1 Twenty\n"
+      expect(@change.to_s).to match "Change:\n2 Hundred\n1 Fifty\n1 Twenty\n"
     end
   end
 end

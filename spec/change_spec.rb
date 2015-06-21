@@ -63,9 +63,9 @@ describe Change do
 
   describe "to_s" do
     before do
-      @twenty = Currency.new("Twenty", "Twenties", 2000, nil, nil)
-      @fifty = Currency.new("Fifty", "Fifties", 5000, @twenty, nil)
-      @hundred = Currency.new("Hundred", "Hundreds", 10000, @fifty, nil)
+      @twenty = Currency.new("Twenty", "Twenties", 2000, nil, @machine)
+      @fifty = Currency.new("Fifty", "Fifties", 5000, @twenty, @machine)
+      @hundred = Currency.new("Hundred", "Hundreds", 10000, @fifty, @machine)
       @change.currencies = {"Hundred" => @hundred, "Fifty" => @fifty, "Twenty" => @twenty}
       @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 2}
     end

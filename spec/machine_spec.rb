@@ -25,6 +25,11 @@ describe Machine do
       @machine.make_change(100.00)
     end
 
+    it "calls change.reset" do
+      expect(@machine.change).to receive(:reset)
+      @machine.make_change(100.00)
+    end
+
     describe "correctness" do
       before do
         @penny = Currency.new("Penny", 1, nil, @machine)

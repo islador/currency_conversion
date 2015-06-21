@@ -47,6 +47,18 @@ describe Change do
     end
   end
 
+  describe "reset" do
+    before do
+      @change.amounts.store("Hundred", 1)
+      @change.amounts.store("Fifty", 1)
+    end
+
+    it "blanks the amounts hash" do
+      @change.reset
+      expect(@change.amounts).to be_empty
+    end
+  end
+
   describe "to_s" do
     before do
       @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 1}

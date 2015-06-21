@@ -14,6 +14,10 @@ class Change
     end
   end
 
+  def reset
+    @amounts = {}
+  end
+
   def to_s
     output_string = "Change:\n"
     @amounts.each_pair do |key, value|

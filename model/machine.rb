@@ -21,6 +21,8 @@ class Machine
 
     # Print the output
     puts @change.to_s
+
+    @change.reset
   end
 
   # add_currency wraps change.add_currency to shield Currency from an unnecessary interdependecy.

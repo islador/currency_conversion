@@ -23,25 +23,27 @@ describe Change do
     context "amounts hash does not contain that name" do
       it "adds the currency's name to the amounts hash" do
         expect(@change.amounts["Penny"]).to be_nil
-        @change.add_currency(Currency.new("Penny", 1, nil, @machine))
+        @change.add_currency(Currency.new("Penny", "Pennies", 1, nil, @machine))
         expect(@change.amounts["Penny"]).not_to be_nil
       end
 
       it "adds a value of one to amounts['currency_name']" do
         expect(@change.amounts["Penny"]).to be_nil
-        @change.add_currency(Currency.new("Penny", 1, nil, @machine))
+        @change.add_currency(Currency.new("Penny", "Pennies", 1, nil, @machine))
         expect(@change.amounts["Penny"]).to be 1
       end
     end
 
     context "amounts hash contains that name" do
       before do
+        @penny = Currency.new("Penny", "Pennies", 1, nil, @machine)
         @change.amounts.store("Penny", 1)
+        @change.currencies.store("Penny", @penny)
       end
       it "increments the value of amounts['currency_name']" do
         expect(@change.amounts["Penny"]).not_to be_nil
         expect(@change.amounts["Penny"]).to be 1
-        @change.add_currency(Currency.new("Penny", 1, nil, @machine))
+        @change.add_currency(@penny)
         expect(@change.amounts["Penny"]).to be 2
       end
     end
@@ -61,10 +63,14 @@ describe Change do
 
   describe "to_s" do
     before do
-      @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 1}
+      @twenty = Currency.new("Twenty", "Twenties", 2000, nil, nil)
+      @fifty = Currency.new("Fifty", "Fifties", 5000, @twenty, nil)
+      @hundred = Currency.new("Hundred", "Hundreds", 10000, @fifty, nil)
+      @change.currencies = {"Hundred" => @hundred, "Fifty" => @fifty, "Twenty" => @twenty}
+      @change.amounts = {"Hundred" => 2, "Fifty" => 1, "Twenty" => 2}
     end
     it "returns a formatted string of the amounts hash" do
-      expect(@change.to_s).to match "Change:\n2 Hundred\n1 Fifty\n1 Twenty\n"
+      expect(@change.to_s).to match "Change:\n2 Hundreds\n1 Fifty\n2 Twenties\n"
     end
   end
 end

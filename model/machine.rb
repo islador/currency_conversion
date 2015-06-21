@@ -14,9 +14,8 @@ class Machine
   def make_change(usd_float)
     raise ArgumentError, "Machine.make_change only accepts floats." unless usd_float.class == Float
     # Convert the floating point to pennies as an integer
-    usd_float = usd_float * 100
+    usd_float = (usd_float * 100).round(2)
     int_value = usd_float.to_i
-
     # Determine the currency breakdown
     largest_currency.add(int_value)
 

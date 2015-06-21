@@ -1,7 +1,10 @@
+require_relative 'change'
+require_relative 'currency'
+
 class Machine
-  def initialize()
+  def initialize
     @change = Change.new()
-    @largest_currency = Currency.new()
+    @largest_currency = nil
   end
 
   attr_reader :change
@@ -17,11 +20,11 @@ class Machine
     largest_currency.add(int_value)
 
     # Print the output
-    puts change.to_s
+    puts @change.to_s
   end
 
   # add_currency wraps change.add_currency to shield Currency from an unnecessary interdependecy.
   def add_currency(currency)
-    change.add_currency(currency)
+    @change.add_currency(currency)
   end
 end

@@ -44,3 +44,12 @@ ruby example.rb
 ```
 and follow the on-screen prompts.
 
+# Testing Instructions
+To run the specs contained in currency_conversion:
+cd into the directory
+run
+```
+rspec
+```
+
+All specs will run with documentation by default.

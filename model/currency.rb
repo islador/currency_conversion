@@ -2,6 +2,12 @@ require_relative 'machine'
 
 class Currency
   def initialize(name, plural_name, value, next_currency, machine)
+    raise ArgumentError, "First arg must be a String." unless name.class == String
+    raise ArgumentError, "Second arg must be a String." unless plural_name.class == String
+    raise ArgumentError, "Third arg msut be an Integer." unless value.class == Fixnum
+    raise ArgumentError, "Fourth arg must be nil or Currency." unless next_currency.class == Currency || next_currency.class == NilClass
+    raise ArgumentError, "Fifth arg must be a Machine." unless machine.class == Machine
+
     @name = name
     @plural_name = plural_name
     @value = value

@@ -23,6 +23,8 @@ class Currency
   end
 
   def check_next_currency(current_value)
+    raise ArgumentError, "Currency.check_next_currency only accepts integers." unless current_value.class == Fixnum
+
     unless next_currency.nil?
       next_currency.add(current_value)
     end

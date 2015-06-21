@@ -42,6 +42,10 @@ describe Currency do
   end
 
   describe "next_currency" do
+    it "throws an argument error if not passed an int" do
+      expect{@hundred.check_next_currency("100")}.to raise_error(ArgumentError)
+    end
+
     context "currency.next is not nil" do
       before do
         @fifty = Currency.new("Fifty", 5000, nil, @machine)

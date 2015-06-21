@@ -4,16 +4,16 @@ require_relative './model/machine'
 
 #This example assembles the currency chain, machine and funnels user input to the library.
 @machine = Machine.new()
-@penny = Currency.new("Penny", 1, nil, @machine)
-@nickle = Currency.new("Nickle", 5, @penny, @machine)
-@dime = Currency.new("Dime", 10, @nickle, @machine)
-@quarter = Currency.new("Quarter", 25, @dime, @machine)
-@one = Currency.new("One", 100, @quarter, @machine)
-@five = Currency.new("Five", 500, @one, @machine)
-@ten = Currency.new("Ten", 1000, @five, @machine)
-@twenty = Currency.new("Twenty", 2000, @ten, @machine)
-@fifty = Currency.new("Fifty", 5000, @twenty, @machine)
-@hundred = Currency.new("Hundred", 10000, @fifty, @machine)
+@penny = Currency.new("Penny", "Pennies", 1, nil, @machine)
+@nickle = Currency.new("Nickle", "Nickles", 5, @penny, @machine)
+@dime = Currency.new("Dime", "Dimes", 10, @nickle, @machine)
+@quarter = Currency.new("Quarter", "Quarters", 25, @dime, @machine)
+@one = Currency.new("One", "Ones", 100, @quarter, @machine)
+@five = Currency.new("Five", "Fives", 500, @one, @machine)
+@ten = Currency.new("Ten", "Tens", 1000, @five, @machine)
+@twenty = Currency.new("Twenty", "Twenties", 2000, @ten, @machine)
+@fifty = Currency.new("Fifty", "Fifties", 5000, @twenty, @machine)
+@hundred = Currency.new("Hundred", "Hundreds", 10000, @fifty, @machine)
 @machine.largest_currency = @hundred
 
 input = ""

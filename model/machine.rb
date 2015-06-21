@@ -12,6 +12,7 @@ class Machine
 
   # make_change triggers the change calculation and outputs the results
   def make_change(usd_float)
+    raise ArgumentError unless usd_float.class == Float
     # Convert the floating point to pennies as an integer
     usd_float = usd_float * 100
     int_value = usd_float.to_i

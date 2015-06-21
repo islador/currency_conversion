@@ -15,6 +15,10 @@ describe Machine do
   it { is_expected.to respond_to(:largest_currency) }
 
   describe "make_change" do
+    it "throws an ArgumentError if not passed a float" do
+      expect {@machine.make_change("22.00")}.to raise_error(ArgumentError)
+    end
+
     it "calls largest_currency.add" do
       expect(@hundred).to receive(:add)
       @machine.make_change(100.00)

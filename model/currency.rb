@@ -11,6 +11,8 @@ class Currency
   attr_reader :name, :value, :next_currency, :machine
 
   def add(current_value)
+    raise ArgumentError, "Currency.add only accepts integers." unless current_value.class == Fixnum
+
     if current_value - value >= 0
       @machine.add_currency(self)
       current_value = current_value - value

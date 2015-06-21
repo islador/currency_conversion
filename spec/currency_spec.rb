@@ -12,6 +12,10 @@ describe Currency do
   subject {@hundred}
 
   describe "Add" do
+    it "throws an argument error if not passed an int" do
+      expect{@hundred.add("100")}.to raise_error(ArgumentError)
+    end
+
     context "currency value 10000 & current_value is 50" do
       it "does not send itself to the machine" do
         expect(@machine).not_to receive(:add_currency).with(@hundred)

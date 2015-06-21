@@ -1,14 +1,15 @@
 require_relative 'machine'
 
 class Currency
-  def initialize(name, value, next_currency, machine)
+  def initialize(name, plural_name, value, next_currency, machine)
     @name = name
+    @plural_name = plural_name
     @value = value
     @next_currency = next_currency
     @machine = machine
   end
 
-  attr_reader :name, :value, :next_currency, :machine
+  attr_reader :name, :plural_name, :value, :next_currency, :machine
 
   def add(current_value)
     raise ArgumentError, "Currency.add only accepts integers." unless current_value.class == Fixnum

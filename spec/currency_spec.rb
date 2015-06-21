@@ -6,7 +6,7 @@ require_relative '../model/machine'
 describe Currency do
   before do
     @machine = Machine.new()
-    @hundred = Currency.new("Hundred", 10000, nil, @machine)
+    @hundred = Currency.new("Hundred", "Hundreds", 10000, nil, @machine)
   end
 
   subject {@hundred}
@@ -48,8 +48,8 @@ describe Currency do
 
     context "currency.next is not nil" do
       before do
-        @fifty = Currency.new("Fifty", 5000, nil, @machine)
-        @hundred = Currency.new("Hundred", 10000, @fifty, @machine)
+        @fifty = Currency.new("Fifty", "Fifties", 5000, nil, @machine)
+        @hundred = Currency.new("Hundred", "Hundreds", 10000, @fifty, @machine)
       end
 
       it "runs currency.next_currency.add" do
